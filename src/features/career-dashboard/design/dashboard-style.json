@@ -1,0 +1,69 @@
+{
+  "metadata": {
+    "name": "QuickFish Career Intelligence",
+    "version": "1.0.0",
+    "reference": "Dashboard.jpg",
+    "designVariance": 5,
+    "motionIntensity": 6,
+    "visualDensity": 7
+  },
+  "typography": {
+    "family": "Be Vietnam Pro",
+    "weights": [400, 500, 600, 700],
+    "display": { "size": 34, "lineHeight": 1.12, "weight": 700, "letterSpacing": -0.8 },
+    "heading": { "size": 22, "lineHeight": 1.25, "weight": 700, "letterSpacing": -0.35 },
+    "body": { "size": 14, "lineHeight": 1.65, "weight": 400 },
+    "label": { "size": 12, "lineHeight": 1.4, "weight": 600, "letterSpacing": 0.15 }
+  },
+  "colors": {
+    "primary": "#294A9F",
+    "primaryDeep": "#0D1836",
+    "primarySoft": "#EEF1F8",
+    "secondary": "#FF8C42",
+    "ink": "#101528",
+    "inkSoft": "#222B46",
+    "text": "#0F172A",
+    "mutedText": "#667085",
+    "page": "#EFF1F7",
+    "surface": "#FFFFFF",
+    "surfaceSubtle": "#F7F8FC",
+    "border": "#E3E6F0",
+    "success": "#2E9B63",
+    "warning": "#D88A13",
+    "danger": "#C74242",
+    "cyan": "#24A9C7"
+  },
+  "spacing": { "unit": 4, "page": 18, "card": 22, "section": 28, "gridGap": 12 },
+  "radius": { "frame": 30, "panel": 24, "card": 22, "control": 14, "pill": 999 },
+  "shadow": {
+    "frame": "0 24px 70px rgba(35, 43, 89, 0.16)",
+    "card": "0 8px 24px rgba(42, 50, 92, 0.08)",
+    "floating": "0 12px 32px rgba(24, 31, 70, 0.18)"
+  },
+  "glass": {
+    "background": "rgba(255, 255, 255, 0.72)",
+    "border": "rgba(255, 255, 255, 0.76)",
+    "blur": 22,
+    "saturation": 1.25,
+    "fallback": "#FFFFFF"
+  },
+  "layout": {
+    "maxWidth": 1600,
+    "summaryColumns": 4,
+    "masterColumn": 340,
+    "detailMinHeight": 650
+  },
+  "breakpoints": { "mobile": 640, "tablet": 1024, "desktop": 1280 },
+  "charts": {
+    "series": ["#294A9F", "#3A8DA8", "#E98A47", "#2E8C65", "#C99349", "#B95660"],
+    "grid": "rgba(255,255,255,0.18)"
+  },
+  "motion": {
+    "hover": { "duration": 0.16, "ease": [0.22, 1, 0.36, 1], "translateY": -2, "scale": 1.015 },
+    "press": { "duration": 0.1, "scale": 0.98 },
+    "popover": { "type": "spring", "stiffness": 420, "damping": 32, "mass": 0.8 },
+    "panel": { "duration": 0.32, "ease": [0.22, 1, 0.36, 1] },
+    "chart": { "duration": 0.68, "ease": [0.22, 1, 0.36, 1] },
+    "orbit": { "type": "spring", "stiffness": 300, "damping": 28 }
+  }
+}

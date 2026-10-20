@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/*
+ * The dashboard fills one screen and scrolls only inside its own columns —
+ * `.qf-dash` is `height: 100%`, so it needs a parent with a real height. In
+ * the product app the sidebar shell provides it; here the page body does.
+ * Below 1024px the dashboard stylesheet releases the single-screen rule on
+ * purpose, so the page scrolls again there.
+ */
+@media (min-width: 1024px) {
+    html,
+    body {
+        height: 100dvh;
+        overflow: hidden;
+    }
+}
+
+/*
+ * Review-deployment control only: the language switch, top centre on desktop,
+ * left of the avatar on phones.
+ */
+.qf-locale-toggle {
+    position: fixed;
+    z-index: 60;
+    left: 50%;
+    top: 22px;
+    transform: translateX(-50%);
+    display: inline-flex;
+    overflow: hidden;
+    border: 1px solid var(--qf-border-strong);
+    border-radius: 999px;
+    background: #fff;
+    box-shadow: var(--qf-shadow-raised);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.qf-locale-toggle a {
+    padding: 8px 14px;
+    color: var(--qf-text-secondary, #6b7280);
+    text-decoration: none;
+}
+
+.qf-locale-toggle a.is-active {
+    background: var(--qf-orange);
+    color: #fff;
+}
+
+/* Mobile: left of the avatar, clear of the logo. */
+@media (max-width: 899px) {
+    .qf-locale-toggle { position: absolute; top: 24px; left: auto; right: 72px; transform: none; }
+    .qf-locale-toggle a { padding: 6px 11px; }
+}

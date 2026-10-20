@@ -1,0 +1,423 @@
+{
+  "$meta": {
+    "name": "QuickFish Career Intelligence — Dashboard Layout",
+    "source": "Attached reference mockup (1669x943 @1x)",
+    "analysedAt": "2026-09-20",
+    "canvas": { "width": 1669, "height": 943, "unit": "px" },
+    "intent": "Single-screen dashboard. Nothing below the fold on >=1280x800.",
+    "note": "All x/y/w/h are measured from the reference at canvas scale and are advisory ratios, not hard pixels. Percentages are of the content column unless stated."
+  },
+
+  "grid": {
+    "type": "shell + content",
+    "columns": [
+      { "id": "sidebar", "width": 210, "fixed": true },
+      { "id": "content", "width": "1fr", "minWidth": 1024 }
+    ],
+    "contentRows": [
+      { "id": "topbar", "height": 64, "grow": false },
+      { "id": "hero", "height": 176, "grow": false },
+      { "id": "kpiRow", "height": 136, "grow": false },
+      { "id": "filterRow", "height": 44, "grow": false },
+      { "id": "board", "height": "1fr", "grow": true, "minHeight": 0 }
+    ],
+    "gap": 12,
+    "outerPadding": { "top": 12, "right": 16, "bottom": 16, "left": 12 }
+  },
+
+  "regions": [
+    {
+      "id": "sidebar",
+      "role": "primary-navigation",
+      "box": { "x": 0, "y": 0, "w": 210, "h": 943 },
+      "surface": "white",
+      "borderRight": "1px solid border.subtle",
+      "children": [
+        {
+          "id": "sidebar.brand",
+          "layout": "row / space-between / center",
+          "height": 60,
+          "padding": "0 16",
+          "children": [
+            { "type": "logo", "asset": "/assets/logos/main_logo.svg", "wordmark": "quickfish", "color": "brand.orange", "height": 24 },
+            { "type": "iconButton", "icon": "panel-left-close", "size": 28, "tone": "muted" }
+          ]
+        },
+        {
+          "id": "sidebar.nav.primary",
+          "type": "navList",
+          "itemHeight": 44,
+          "itemRadius": 12,
+          "itemPadding": "0 14",
+          "gap": 2,
+          "iconSize": 18,
+          "labelStyle": "body.medium",
+          "activeState": { "background": "brand.orangeSoft", "text": "brand.orangeInk", "iconTint": "brand.orange", "fontWeight": 600 },
+          "restState": { "background": "transparent", "text": "text.secondary" },
+          "items": [
+            { "label": "Trang chủ", "icon": "home", "active": true, "href": "/" },
+            { "label": "The Quiz", "icon": "compass", "href": "/survey" },
+            { "label": "Career Path", "icon": "route", "href": "/career-path" },
+            { "label": "Fish Tank", "icon": "fish", "href": "/tank" },
+            { "label": "AI Trò chuyện", "icon": "message-circle", "href": "/chat" },
+            { "label": "Trợ lý", "icon": "bot", "href": "/assistant" }
+          ]
+        },
+        {
+          "id": "sidebar.nav.resources",
+          "type": "navList",
+          "sectionLabel": { "text": "TÀI NGUYÊN", "style": "overline", "color": "text.muted", "marginTop": 18, "marginBottom": 6 },
+          "items": [
+            { "label": "Bể Cá", "icon": "fish-symbol", "href": "/tank" },
+            { "label": "Lộ trình sự nghiệp", "icon": "map-pin", "href": "/career-path/roadmap" },
+            { "label": "Cộng đồng", "icon": "users", "href": "/community" }
+          ]
+        },
+        {
+          "id": "sidebar.footer",
+          "position": "bottom",
+          "borderTop": "1px solid border.subtle",
+          "children": [
+            { "type": "navItem", "label": "Đăng nhập", "icon": "user-round", "authAware": true, "authedLabel": "{user.name}" },
+            { "type": "localeSwitch", "label": "Ngôn ngữ", "icon": "globe", "value": "VI", "options": ["VI", "EN"] }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "topbar",
+      "role": "page-header",
+      "box": { "x": 210, "y": 0, "w": 1459, "h": 64 },
+      "layout": "row / space-between / center",
+      "surface": "white",
+      "children": [
+        {
+          "id": "topbar.identity",
+          "layout": "row / start / center",
+          "gap": 10,
+          "children": [
+            { "type": "iconDisc", "icon": "compass", "size": 36, "radius": "full", "background": "ink.900", "iconColor": "white" },
+            {
+              "type": "textStack",
+              "primary": { "text": "Career Intelligence", "style": "h3", "color": "text.primary" },
+              "secondary": { "text": "{careerCount} nghề · WEF 2025–2030", "style": "caption", "color": "text.muted" }
+            }
+          ]
+        },
+        {
+          "id": "topbar.tabs",
+          "type": "pillTabs",
+          "align": "center",
+          "background": "transparent",
+          "itemRadius": "full",
+          "itemPadding": "9 18",
+          "itemStyle": "body.medium",
+          "activeState": { "background": "brand.orangeSoft", "text": "brand.orangeInk", "fontWeight": 600 },
+          "restState": { "text": "text.secondary" },
+          "items": ["Tổng quan", "Kỹ năng", "Thị trường", "AI & tương lai", "Ngành học", "Lộ trình"]
+        },
+        {
+          "id": "topbar.actions",
+          "layout": "row / end / center",
+          "gap": 8,
+          "children": [
+            { "type": "iconButton", "icon": "search", "variant": "ghost-circle", "size": 38 },
+            { "type": "iconButton", "icon": "calendar", "variant": "ghost-circle", "size": 38 },
+            { "type": "iconButton", "icon": "bell", "variant": "ghost-circle", "size": 38, "badge": { "dot": true, "color": "brand.orange" } },
+            { "type": "avatarMenu", "size": 38, "fallback": "initials", "background": "brand.orange", "textColor": "white", "chevron": true }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "hero",
+      "role": "identity-banner",
+      "box": { "x": 222, "y": 68, "w": 1435, "h": 176 },
+      "radius": 20,
+      "surface": "gradient.sand",
+      "decoration": {
+        "type": "illustration-band",
+        "assets": ["coral-left", "seaweed-left", "coral-right", "seaweed-right"],
+        "opacity": 1,
+        "placement": "bleed left+right, behind content",
+        "sourceAsset": "/assets/fishes/coral-bg.png"
+      },
+      "layout": "row / space-between / center",
+      "padding": "20 32",
+      "children": [
+        {
+          "id": "hero.copy",
+          "flex": "0 1 46%",
+          "children": [
+            { "type": "eyebrow", "text": "Xin chào,", "style": "body", "color": "text.secondary" },
+            { "type": "title", "text": "Hồ sơ QuickFish của bạn", "style": "display", "color": "ink.900" },
+            { "type": "subtitle", "text": "Khám phá tiềm năng, tìm đúng nghề, cùng bạn bơi xa hơn.", "style": "body", "color": "text.secondary" },
+            {
+              "id": "hero.completion",
+              "type": "progressCard",
+              "surface": "white",
+              "radius": 14,
+              "padding": "12 16",
+              "marginTop": 14,
+              "shadow": "card",
+              "layout": "row / start / center",
+              "gap": 14,
+              "children": [
+                { "type": "donut", "value": "{profile_completion}", "size": 46, "thickness": 5, "trackColor": "brand.orangeSoft", "fillColor": "brand.orange", "centerLabel": "{value}%", "centerStyle": "label.bold" },
+                { "type": "textStack", "primary": { "text": "Hoàn thiện hồ sơ", "style": "h3" }, "secondary": { "text": "Bổ sung thêm để nhận gợi ý chính xác hơn!", "style": "caption", "color": "text.muted" } },
+                { "type": "iconButton", "icon": "arrow-right", "variant": "ghost", "align": "end" }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "hero.mascot",
+          "flex": "0 0 auto",
+          "layout": "row / center / center",
+          "children": [
+            { "type": "speechBubble", "text": "Good careers brighter tomorrows!", "font": "handwritten", "tailSide": "bottom-right", "surface": "white", "radius": 18, "maxWidth": 150, "accessory": { "type": "icon", "icon": "fish", "color": "brand.blue" } },
+            { "type": "mascot", "asset": "/assets/fishes/clownfish.png", "fishTypeAware": true, "width": 170, "align": "bottom" }
+          ]
+        },
+        {
+          "id": "hero.cta",
+          "flex": "0 0 auto",
+          "align": "end",
+          "children": [
+            { "type": "quote", "text": "\"Different fish brighter futures.\"", "style": "h2", "color": "ink.900", "align": "right", "maxWidth": 220 },
+            { "type": "button", "label": "Làm bài test", "icon": "arrow-right", "variant": "primary", "size": "lg", "radius": "full", "marginTop": 14 },
+            { "type": "link", "label": "Khám phá fish type của bạn", "icon": "arrow-right", "style": "caption", "color": "text.secondary", "marginTop": 10 }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "kpiRow",
+      "role": "metric-summary",
+      "box": { "x": 222, "y": 256, "w": 1435, "h": 136 },
+      "layout": "grid",
+      "columns": 4,
+      "gap": 12,
+      "cardSpec": {
+        "surface": "white",
+        "radius": 16,
+        "padding": "14 16",
+        "shadow": "card",
+        "border": "1px solid border.subtle",
+        "header": { "layout": "row / start / center", "gap": 8, "iconTile": { "size": 28, "radius": 9, "background": "tint(accent, 12%)", "iconColor": "accent", "iconSize": 15 }, "label": { "style": "label", "color": "text.secondary" } }
+      },
+      "cards": [
+        {
+          "id": "kpi.salary",
+          "label": "Lương khởi điểm",
+          "accent": "brand.orange",
+          "icon": "briefcase",
+          "body": [
+            { "type": "figure", "text": "{salary.vietnam}", "style": "figure.md" },
+            { "type": "caption", "text": "US {salary.us}" },
+            { "type": "delta", "text": "+12% so với 5 năm trước", "direction": "up", "tone": "success" }
+          ],
+          "visual": { "type": "barSparkline", "position": "right", "bars": 6, "fill": "gradient.orangeBars", "width": 96, "height": 56, "align": "bottom" }
+        },
+        {
+          "id": "kpi.outlook",
+          "label": "Xu hướng toàn cầu",
+          "accent": "brand.orange",
+          "icon": "trending-up",
+          "badge": { "text": "Chưa có dự báo", "icon": "circle-help", "variant": "neutral-outline", "position": "header-right" },
+          "body": [
+            { "type": "figure", "text": "{trend.growth ?? '# —'}", "style": "figure.lg" },
+            { "type": "caption", "text": "Hạng WEF / 126" }
+          ],
+          "visual": { "type": "lineChart", "position": "right", "points": 6, "xLabels": ["2025", "2026", "2027", "2028", "2029", "2030"], "stroke": "brand.orange", "dots": true, "dotRadius": 3, "width": 230, "height": 76, "axis": "x-only", "gridlines": false }
+        },
+        {
+          "id": "kpi.country",
+          "label": "Bối cảnh quốc gia",
+          "accent": "brand.orange",
+          "icon": "map-pin",
+          "body": [
+            { "type": "figure", "text": "{country.name}", "style": "figure.sm", "control": "select" },
+            { "type": "statPair", "items": [{ "label": "Dịch chuyển cơ cấu", "value": "{country.structuralChurn}%" }, { "label": "Mức độ ảnh hưởng AI", "value": "{country.aiExposure}%" }] }
+          ],
+          "visual": { "type": "barSparkline", "position": "background-right", "opacity": 0.35, "bars": 5, "fill": "brand.blueSoft" }
+        },
+        {
+          "id": "kpi.fit",
+          "label": "Độ hợp hồ sơ",
+          "accent": "success",
+          "icon": "target",
+          "layout": "row / start / center",
+          "gap": 14,
+          "body": [
+            { "type": "donut", "value": "{profileMatch.score}", "size": 64, "thickness": 7, "fillColor": "success", "trackColor": "success.soft", "centerLabel": "{value}%", "caption": "Phù hợp cao" },
+            {
+              "type": "meterList",
+              "flex": 1,
+              "rowHeight": 20,
+              "labelWidth": 84,
+              "barHeight": 6,
+              "barRadius": "full",
+              "valueAlign": "right",
+              "items": [
+                { "icon": "sparkle", "label": "Kỹ năng", "value": 80, "color": "success" },
+                { "icon": "sparkle", "label": "Kinh nghiệm", "value": 70, "color": "success" },
+                { "icon": "sparkle", "label": "Sở thích", "value": 85, "color": "brand.amber" },
+                { "icon": "sparkle", "label": "Giá trị cá nhân", "value": 75, "color": "brand.amber" }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "filterRow",
+      "role": "collection-filters",
+      "box": { "x": 222, "y": 404, "w": 1435, "h": 44 },
+      "layout": "grid",
+      "columns": "minmax(240px,1.5fr) repeat(4, minmax(120px,0.75fr))",
+      "gap": 10,
+      "controlSpec": { "height": 40, "radius": 12, "surface": "white", "border": "1px solid border.subtle", "textStyle": "body.sm", "placeholderColor": "text.muted" },
+      "controls": [
+        { "type": "search", "placeholder": "Tìm trong {careerCount} nghề", "leadingIcon": "search" },
+        { "type": "select", "placeholder": "Tất cả nhóm nghề", "trailingIcon": "chevron-down" },
+        { "type": "select", "placeholder": "Tất cả RIASEC", "trailingIcon": "chevron-down" },
+        { "type": "select", "placeholder": "Tất cả Job Zone", "trailingIcon": "chevron-down" },
+        { "type": "select", "placeholder": "Tất cả xu hướng", "trailingIcon": "chevron-down" }
+      ]
+    },
+
+    {
+      "id": "board",
+      "role": "master-detail",
+      "box": { "x": 222, "y": 460, "w": 1435, "h": 470 },
+      "layout": "grid",
+      "columns": "330px minmax(0,1fr)",
+      "gap": 12,
+      "children": [
+        {
+          "id": "board.list",
+          "role": "master",
+          "surface": "ink.900",
+          "radius": 16,
+          "padding": "14 10",
+          "textOn": "inverse",
+          "header": {
+            "layout": "row / space-between / center",
+            "left": { "text": "{count} nghề", "style": "h3", "color": "white" },
+            "right": { "type": "select", "variant": "inverse-subtle", "label": "Sắp xếp: Phổ biến", "radius": 10 }
+          },
+          "list": {
+            "scroll": "y",
+            "gap": 4,
+            "rowSpec": {
+              "height": 50,
+              "radius": 12,
+              "padding": "0 10",
+              "layout": "row / start / center",
+              "gap": 10,
+              "iconTile": { "size": 32, "radius": 9, "background": "rgba(255,255,255,0.08)", "iconColor": "rgba(255,255,255,0.7)" },
+              "primary": { "style": "body.sm.semibold", "color": "rgba(255,255,255,0.92)", "clamp": 1 },
+              "secondary": { "text": "{riasec} · Zone {zone}", "style": "caption", "color": "rgba(255,255,255,0.45)" },
+              "trailing": { "text": "#{id}", "style": "caption.semibold", "color": "rgba(255,255,255,0.55)" },
+              "activeState": { "background": "brand.orange", "primaryColor": "white", "secondaryColor": "rgba(255,255,255,0.8)", "iconTileBackground": "rgba(255,255,255,0.22)", "iconColor": "white", "trailingColor": "white", "chevron": true }
+            }
+          }
+        },
+        {
+          "id": "board.detail",
+          "role": "detail",
+          "surface": "white",
+          "radius": 16,
+          "border": "1px solid border.subtle",
+          "shadow": "card",
+          "padding": "16 20",
+          "decoration": { "type": "illustration", "asset": "coral-bottom-right", "opacity": 0.5, "placement": "bottom-right bleed" },
+          "children": [
+            {
+              "id": "detail.header",
+              "layout": "row / space-between / start",
+              "children": [
+                {
+                  "layout": "row / start / start",
+                  "gap": 12,
+                  "children": [
+                    { "type": "iconTile", "size": 44, "radius": 13, "background": "brand.orangeSoft", "iconColor": "brand.orange", "iconSize": 21 },
+                    {
+                      "type": "textStack",
+                      "overline": { "text": "#{id} - {jobGroup}", "style": "caption", "color": "text.muted" },
+                      "primary": { "text": "{career.name}", "style": "h1" },
+                      "secondary": { "text": "{career.description}", "style": "body.sm", "color": "text.secondary", "clamp": 2, "maxWidth": "62ch" }
+                    }
+                  ]
+                },
+                {
+                  "layout": "row / end / center",
+                  "gap": 8,
+                  "children": [
+                    { "type": "button", "label": "Lưu nghề", "icon": "heart", "variant": "soft", "size": "sm", "radius": "full" },
+                    { "type": "iconButton", "icon": "share-2", "variant": "outline-circle", "size": 36 },
+                    { "type": "mascotAccent", "asset": "/assets/fishes/clownfish.png", "width": 96, "caption": { "text": "Small steps\nBig careers", "font": "handwritten", "rotate": -8, "color": "text.secondary" } }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "detail.tabs",
+              "type": "pillTabs",
+              "variant": "soft",
+              "marginTop": 14,
+              "itemRadius": "full",
+              "itemPadding": "8 16",
+              "activeState": { "background": "brand.orange", "text": "white" },
+              "restState": { "background": "surface.sand", "text": "text.secondary" },
+              "items": ["Tổng quan", "Kỹ năng", "Cơ hội việc làm", "Lộ trình phát triển", "Ngành học liên quan"]
+            },
+            {
+              "id": "detail.grid",
+              "type": "bento",
+              "marginTop": 14,
+              "gap": 10,
+              "columns": 12,
+              "rows": "auto auto",
+              "tileSpec": { "surface": "surface.sand", "radius": 14, "padding": "12 14", "border": "1px solid border.subtle" },
+              "tiles": [
+                { "id": "tile.salary", "span": { "col": 4, "row": 1 }, "title": "Mức lương tham khảo", "content": [{ "type": "figure", "text": "{salary.vietnam}", "style": "figure.sm" }, { "type": "caption", "text": "US {salary.us}" }, { "type": "rangeBar", "gradient": "gradient.orangeBars", "ticks": [{ "label": "Thấp", "value": "13M" }, { "label": "Trung bình", "value": "17.5M" }, { "label": "Cao", "value": "22M" }] }] },
+                { "id": "tile.riasec", "span": { "col": 2, "row": 1 }, "title": "RIASEC", "icon": "compass", "content": [{ "type": "figure", "text": "{riasec.code}", "style": "figure.sm" }, { "type": "caption", "text": "({riasec.label})" }] },
+                { "id": "tile.zone", "span": { "col": 2, "row": 1 }, "title": "Job Zone", "icon": "target", "content": [{ "type": "figure", "text": "Zone {zone}", "style": "figure.sm" }, { "type": "caption", "text": "({zone.label})" }] },
+                { "id": "tile.experience", "span": { "col": 2, "row": 1 }, "title": "Kinh nghiệm tối thiểu", "icon": "clock", "content": [{ "type": "figure", "text": "{experience} năm", "style": "figure.sm" }] },
+                { "id": "tile.ai", "span": { "col": 2, "row": 1 }, "title": "Mức độ ảnh hưởng AI", "icon": "info", "content": [{ "type": "donut", "value": "{ai.exposure}", "size": 52, "thickness": 6, "fillColor": "brand.orange", "centerLabel": "{value}%" }, { "type": "tag", "text": "Rất cao", "color": "brand.orangeInk", "style": "h3" }], "layout": "row / start / center" },
+                { "id": "tile.demand", "span": { "col": 3, "row": 2 }, "title": "Nhu cầu nhân lực (Việt Nam)", "content": [{ "type": "delta", "text": "+18%", "style": "figure.md", "tone": "success", "direction": "up" }, { "type": "caption", "text": "so với giai đoạn 2020–2025" }, { "type": "areaChart", "points": 6, "xLabels": ["2020", "2021", "2022", "2023", "2024", "2025"], "stroke": "success", "fill": "gradient.greenFade", "dots": true, "height": 92 }] },
+                { "id": "tile.skills", "span": { "col": 4, "row": 2 }, "title": "Kỹ năng quan trọng", "content": [{ "type": "meterList", "barHeight": 7, "rows": 5, "labelWidth": 118, "valueSuffix": "%", "colorRamp": ["brand.orange", "brand.orange", "brand.amber", "brand.amber", "brand.amberSoft"] }] },
+                { "id": "tile.radar", "span": { "col": 3, "row": 2 }, "title": "Hồ sơ RIASEC của nghề", "content": [{ "type": "radarChart", "axes": ["R", "I", "A", "S", "E", "C"], "axisSubLabels": ["Thực tế", "Nghiên cứu", "Sáng tạo", "Xã hội", "Lãnh đạo", "Quy trình"], "stroke": "brand.orange", "fill": "brand.orange", "fillOpacity": 0.25, "gridStroke": "border.subtle", "height": 170 }] },
+                { "id": "tile.note", "span": { "col": 2, "row": 2 }, "variant": "quote", "surface": "brand.orangeSoft", "content": [{ "type": "paragraph", "text": "{career.fitNote}", "style": "body.sm", "color": "text.secondary" }] }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+
+  "dataBindings": {
+    "{user.name}": "GET /api/auth/profile/ → name",
+    "{profile_completion}": "GET /api/auth/profile/ → profile_completion",
+    "{fish_type}": "GET /api/auth/profile/ → latest_survey.fish_type",
+    "{profileMatch.score}": "client: correlation(latest_survey.riasec_scores, career.riasec.scores)",
+    "{career.*}": "/data/career-dashboard.v1.json → careers[]",
+    "{country.*}": "/data/career-dashboard.v1.json → economies[]",
+    "recommendedCareers": "latest_survey.job_zone_rec.zone_5 + zone_4 + zone_3, matched by career.name.en",
+    "reportHref": "/survey/results/{latest_survey.id} when latest_survey.detail_report === true"
+  },
+
+  "responsive": {
+    "1440+": "as specified",
+    "1280-1439": "board.list 290px; detail bento collapses tile.note under tile.radar",
+    "1024-1279": "kpiRow → 2 columns; hero.mascot hidden; filterRow drops last 2 selects",
+    "<1024": "sidebar → drawer; board stacks vertically; page scrolls normally (single-screen constraint released)"
+  }
+}

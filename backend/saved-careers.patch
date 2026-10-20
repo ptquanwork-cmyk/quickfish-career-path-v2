@@ -1,0 +1,123 @@
+diff --git a/user/models.py b/user/models.py
+index ca6baeb..93dea35 100644
+--- a/user/models.py
++++ b/user/models.py
+@@ -937,3 +937,29 @@ class About(BaseModel):
+ 
+     def __str__(self):
+         return f"About {self.user_account.email}"
++
++
++class SavedCareer(BaseModel):
++    """A career bookmarked from the Career Intelligence dashboard.
++
++    The career catalogue ships as a static JSON asset on the frontend, so there
++    is no careers table to point a ForeignKey at — the slug is the identity and
++    the name is denormalised so the list stays readable without the catalogue.
++    """
++
++    user = models.ForeignKey(
++        Profile, on_delete=models.CASCADE, related_name="saved_careers"
++    )
++    career_slug = models.CharField(max_length=160)
++    career_name = models.CharField(max_length=255, blank=True, default="")
++
++    class Meta:
++        ordering = ["-created_at"]
++        constraints = [
++            models.UniqueConstraint(
++                fields=["user", "career_slug"], name="unique_saved_career"
++            )
++        ]
++
++    def __str__(self):
++        return f"{self.user_id} -> {self.career_slug}"
+diff --git a/user/urls.py b/user/urls.py
+index 975c0a5..5918c60 100644
+--- a/user/urls.py
++++ b/user/urls.py
+@@ -14,6 +14,7 @@ from .views import (
+     MentorListAPIView,
+     SaveCoachAPIView,
+     SavedCoachListAPIView,
++    SavedCareerAPIView,
+     ProjectDetailAPIView,
+     ProjectListCreateAPIView,
+     PublicAboutAPIView,
+@@ -162,6 +163,7 @@ urlpatterns = [
+         name="education-detail",
+     ),
+     path("profile/score/", ScoreDetailAPIView.as_view(), name="score-detail"),
++    path("profile/saved-careers/", SavedCareerAPIView.as_view(), name="saved-careers"),
+     path("profile/surveys/", SurveyListAPIView.as_view(), name="survey-list"),
+     path(
+         "profile/surveys/attach/",
+diff --git a/user/views.py b/user/views.py
+index 70edcbe..857ead9 100644
+--- a/user/views.py
++++ b/user/views.py
+@@ -53,6 +53,7 @@ from .models import (
+     About,
+     Score,
+     SavedCoach,
++    SavedCareer,
+     WorkExperience,
+ )
+ from .serializers import (
+@@ -1488,3 +1489,56 @@ class DevAutoLoginAPIView(APIView):
+ 
+     def post(self, request):
+         return self._login(request)
++
++
++class SavedCareerAPIView(APIView):
++    """Bookmarked careers for the Career Intelligence dashboard.
++
++    GET    -> {"slugs": [...], "items": [{slug, name, created_at}]}
++    POST   -> toggle {"career_slug": "...", "career_name": "..."}; returns {"saved": bool}
++    DELETE -> remove ?career_slug=... (idempotent)
++    """
++
++    permission_classes = [IsAuthenticated]
++
++    def get(self, request):
++        rows = SavedCareer.objects.filter(user=request.user)
++        return Response(
++            {
++                "slugs": [row.career_slug for row in rows],
++                "items": [
++                    {
++                        "career_slug": row.career_slug,
++                        "career_name": row.career_name,
++                        "created_at": row.created_at,
++                    }
++                    for row in rows
++                ],
++            }
++        )
++
++    def post(self, request):
++        raw_slug = request.data.get("career_slug")
++        slug = raw_slug.strip() if isinstance(raw_slug, str) else ""
++        name = request.data.get("career_name") or ""
++        if not slug or len(slug) > 160 or not isinstance(name, str):
++            return Response(
++                {"detail": "career_slug must be 1-160 characters; career_name must be text."},
++                status=status.HTTP_400_BAD_REQUEST,
++            )
++        row, created = SavedCareer.objects.get_or_create(
++            user=request.user,
++            career_slug=slug,
++            defaults={"career_name": name[:255]},
++        )
++        if not created:
++            row.delete()
++            return Response({"saved": False, "career_slug": slug})
++        return Response(
++            {"saved": True, "career_slug": slug}, status=status.HTTP_201_CREATED
++        )
++
++    def delete(self, request):
++        slug = (request.query_params.get("career_slug") or "").strip()
++        SavedCareer.objects.filter(user=request.user, career_slug=slug).delete()
++        return Response(status=status.HTTP_204_NO_CONTENT)

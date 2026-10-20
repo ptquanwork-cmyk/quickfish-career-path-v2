@@ -1,0 +1,60 @@
+{
+  "id": 1,
+  "name": "Demo QuickFish",
+  "username": "demo",
+  "email": "demo@qf.test",
+  "avatar": null,
+  "latest_survey": {
+    "id": "67499b83-c395-4c40-b2fa-b5bbd96232f6",
+    "created_at": "2026-10-04T08:45:03.144093+00:00",
+    "fish_type": "Salmon",
+    "riasec_scores": {
+      "R": 2.0,
+      "I": 5.0,
+      "A": 3.0,
+      "S": 3.0,
+      "E": 4.0,
+      "C": 4.0
+    },
+    "ocean_scores": {
+      "O": 100.0,
+      "C": 80.0,
+      "E": 80.0,
+      "A": 80.0,
+      "N": 40.0
+    },
+    "job_zone_rec": {
+      "zone_1": [],
+      "zone_2": [],
+      "zone_3": [
+        "Political Scientists",
+        "Economists",
+        "Psychologists",
+        "Research Analyst",
+        "Sociologists"
+      ],
+      "zone_4": [
+        "Market Research Analysts",
+        "Business Intelligence Analysts",
+        "Data Managers",
+        "Strategic Manager",
+        "Data Scientists"
+      ],
+      "zone_5": [
+        "Lawyers",
+        "Scientist Managers",
+        "Investment Fund Managers",
+        "Data Warehousing Specialists",
+        "Judges"
+      ]
+    },
+    "job_top_5": [
+      "Political Scientists",
+      "Economists",
+      "Psychologists",
+      "Market Research Analysts",
+      "Research Analyst"
+    ],
+    "detail_report": true
+  }
+}

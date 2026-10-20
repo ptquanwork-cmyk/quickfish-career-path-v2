@@ -1,0 +1,172 @@
+{
+  "$meta": {
+    "name": "QuickFish Ocean — Design Language",
+    "version": "2.0.0",
+    "source": "Attached reference mockup",
+    "supersedes": "dashboard-style.json (Finnova indigo system)",
+    "mood": ["warm", "friendly", "editorial", "underwater", "optimistic"],
+    "principles": [
+      "Warm sand over cold grey — the page never reads clinical.",
+      "One accent does the work: orange marks what is active, selected, or actionable. Nothing else is orange.",
+      "Exactly one dark surface per screen (the career list) so the eye knows where the index is.",
+      "Illustration is chrome, never content: coral and mascots sit behind or beside data, never on top of it.",
+      "Data ink stays orange/green/neutral. Charts do not introduce new hues."
+    ]
+  },
+
+  "color": {
+    "brand": {
+      "orange": "#F5A524",
+      "orangeDeep": "#E08A0F",
+      "orangeInk": "#B4710D",
+      "orangeSoft": "#FEF1DC",
+      "orangeSofter": "#FFF8EC",
+      "amber": "#FBBF24",
+      "amberSoft": "#FCD98A",
+      "blue": "#3B93C4",
+      "blueSoft": "#D9E9F2"
+    },
+    "ink": {
+      "900": "#1B2635",
+      "800": "#24324A",
+      "700": "#33415C"
+    },
+    "text": {
+      "primary": "#16202E",
+      "secondary": "#64748B",
+      "muted": "#98A2B3",
+      "inverse": "#FFFFFF",
+      "inverseMuted": "rgba(255,255,255,0.58)"
+    },
+    "surface": {
+      "page": "#FBF7F0",
+      "card": "#FFFFFF",
+      "sand": "#FCF8F1",
+      "sandDeep": "#F8F1E6",
+      "dark": "#1B2635"
+    },
+    "border": {
+      "subtle": "#F0E9DC",
+      "default": "#E7DFD0",
+      "strong": "#D9CFBC",
+      "onDark": "rgba(255,255,255,0.10)"
+    },
+    "semantic": {
+      "success": "#3FA45B",
+      "successSoft": "#E6F4EA",
+      "warning": "#E09B1E",
+      "warningSoft": "#FDF2DC",
+      "danger": "#D0564B",
+      "dangerSoft": "#FBEAE8",
+      "info": "#3B93C4",
+      "infoSoft": "#E4F0F7"
+    },
+    "gradient": {
+      "sand": "linear-gradient(103deg, #FDEBC8 0%, #FCE6BB 44%, #FBE0AE 100%)",
+      "sandSoft": "linear-gradient(180deg, #FFFDF9 0%, #FCF8F1 100%)",
+      "orangeBars": "linear-gradient(180deg, #F9BE5C 0%, #F5A524 100%)",
+      "orangeMeter": "linear-gradient(90deg, #F5A524 0%, #FBBF24 100%)",
+      "greenFade": "linear-gradient(180deg, rgba(63,164,91,0.26) 0%, rgba(63,164,91,0) 100%)",
+      "orangeFade": "linear-gradient(180deg, rgba(245,165,36,0.28) 0%, rgba(245,165,36,0) 100%)",
+      "cta": "linear-gradient(135deg, #F8B03C 0%, #EF9412 100%)"
+    }
+  },
+
+  "typography": {
+    "families": {
+      "sans": "'Be Vietnam Pro', system-ui, -apple-system, 'Segoe UI', sans-serif",
+      "handwritten": "'Caveat', 'Segoe Script', cursive"
+    },
+    "scale": {
+      "display": { "size": 34, "lineHeight": 1.14, "weight": 700, "letterSpacing": "-0.9px" },
+      "h1": { "size": 24, "lineHeight": 1.22, "weight": 700, "letterSpacing": "-0.5px" },
+      "h2": { "size": 19, "lineHeight": 1.3, "weight": 700, "letterSpacing": "-0.3px" },
+      "h3": { "size": 14, "lineHeight": 1.35, "weight": 600, "letterSpacing": "-0.1px" },
+      "figure.lg": { "size": 30, "lineHeight": 1.05, "weight": 700, "letterSpacing": "-0.8px" },
+      "figure.md": { "size": 22, "lineHeight": 1.1, "weight": 700, "letterSpacing": "-0.5px" },
+      "figure.sm": { "size": 17, "lineHeight": 1.2, "weight": 700, "letterSpacing": "-0.3px" },
+      "body": { "size": 13.5, "lineHeight": 1.6, "weight": 400 },
+      "body.sm": { "size": 12.5, "lineHeight": 1.55, "weight": 400 },
+      "body.medium": { "size": 13, "lineHeight": 1.4, "weight": 500 },
+      "label": { "size": 11.5, "lineHeight": 1.35, "weight": 600 },
+      "caption": { "size": 10.5, "lineHeight": 1.4, "weight": 500 },
+      "overline": { "size": 10, "lineHeight": 1.3, "weight": 700, "letterSpacing": "0.12em", "transform": "uppercase" },
+      "handwritten": { "size": 15, "lineHeight": 1.2, "weight": 600 }
+    }
+  },
+
+  "radius": { "xs": 8, "sm": 10, "md": 12, "card": 16, "banner": 20, "pill": 999 },
+
+  "spacing": { "unit": 4, "gap": 12, "gapTight": 8, "cardPadding": 16, "cardPaddingTight": 14, "pagePadding": 12 },
+
+  "shadow": {
+    "card": "0 1px 2px rgba(27,38,53,0.04), 0 6px 18px rgba(27,38,53,0.05)",
+    "raised": "0 2px 4px rgba(27,38,53,0.05), 0 12px 28px rgba(27,38,53,0.08)",
+    "cta": "0 8px 20px rgba(224,138,15,0.32)",
+    "dark": "0 10px 30px rgba(27,38,53,0.16)",
+    "none": "none"
+  },
+
+  "components": {
+    "navItem": { "height": 44, "radius": 12, "paddingX": 14, "gap": 11, "iconSize": 18, "active": { "bg": "brand.orangeSoft", "fg": "brand.orangeInk", "weight": 600 }, "rest": { "fg": "text.secondary" }, "hover": { "bg": "surface.sand" } },
+    "pillTab": { "radius": "pill", "paddingX": 18, "paddingY": 9, "active": { "bg": "brand.orangeSoft", "fg": "brand.orangeInk", "weight": 600 }, "rest": { "fg": "text.secondary" } },
+    "pillTabSolid": { "radius": "pill", "paddingX": 16, "paddingY": 8, "active": { "bg": "brand.orange", "fg": "#FFFFFF" }, "rest": { "bg": "surface.sand", "fg": "text.secondary" } },
+    "buttonPrimary": { "radius": "pill", "paddingX": 24, "height": 46, "bg": "gradient.cta", "fg": "#FFFFFF", "weight": 700, "shadow": "cta", "hover": { "translateY": -1 } },
+    "buttonSoft": { "radius": "pill", "paddingX": 14, "height": 34, "bg": "brand.orangeSoft", "fg": "brand.orangeInk", "weight": 600 },
+    "iconButtonCircle": { "size": 38, "radius": "pill", "bg": "#FFFFFF", "border": "1px solid border.subtle", "fg": "text.secondary", "hover": { "bg": "brand.orangeSofter", "fg": "brand.orangeInk" } },
+    "iconTile": { "radius": 10, "bgFormula": "accent @ 12% alpha", "fgFormula": "accent @ 100%" },
+    "card": { "radius": "card", "bg": "surface.card", "border": "1px solid border.subtle", "shadow": "card", "padding": 16 },
+    "tile": { "radius": 14, "bg": "surface.sand", "border": "1px solid border.subtle", "padding": "12 14" },
+    "input": { "height": 40, "radius": 12, "bg": "#FFFFFF", "border": "1px solid border.subtle", "focusRing": "0 0 0 3px rgba(245,165,36,0.22)" },
+    "listRowDark": { "height": 50, "radius": 12, "rest": { "fg": "rgba(255,255,255,0.9)" }, "hover": { "bg": "rgba(255,255,255,0.06)" }, "active": { "bg": "brand.orange", "fg": "#FFFFFF" } },
+    "donut": { "thicknessRatio": 0.11, "track": "12% alpha of fill", "cap": "round", "centerLabelStyle": "figure.sm" },
+    "meterRow": { "barHeight": 6, "barRadius": "pill", "track": "border.subtle", "labelStyle": "body.sm", "valueStyle": "label" },
+    "speechBubble": { "radius": 18, "bg": "#FFFFFF", "padding": "10 14", "font": "handwritten", "tail": 10 }
+  },
+
+  "charts": {
+    "series": ["#F5A524", "#FBBF24", "#3FA45B", "#3B93C4", "#E08A0F", "#98A2B3"],
+    "grid": "#F0E9DC",
+    "axisText": "#98A2B3",
+    "axisFontSize": 10,
+    "line": { "strokeWidth": 2, "dot": { "r": 3, "strokeWidth": 2, "fill": "#FFFFFF" } },
+    "area": { "fillOpacity": 1, "gradient": "gradient.greenFade" },
+    "bar": { "radius": [6, 6, 0, 0], "maxWidth": 14 },
+    "radar": { "stroke": "#F5A524", "strokeWidth": 2, "fill": "#F5A524", "fillOpacity": 0.25, "gridStroke": "#EDE4D5" },
+    "tooltip": { "bg": "#1B2635", "fg": "#FFFFFF", "radius": 10, "fontSize": 11, "padding": "6 10", "shadow": "dark" }
+  },
+
+  "illustration": {
+    "assets": {
+      "coralBand": "/assets/fishes/coral-bg.png",
+      "clownfish": "/assets/fishes/clownfish.png",
+      "fishByType": "/assets/fishes/{fish_type|lower}.png",
+      "constellation": "/assets/career-dashboard/career-constellation.png"
+    },
+    "rules": [
+      "Coral band bleeds off the left and right edges of the hero only.",
+      "Mascot never overlaps a number or a control; it sits in its own column.",
+      "Decorative art caps at 50% opacity when it sits under a content card.",
+      "Handwritten captions only next to a mascot, never as a standalone label."
+    ]
+  },
+
+  "motion": {
+    "hover": { "duration": 0.16, "ease": [0.22, 1, 0.36, 1], "translateY": -2 },
+    "press": { "duration": 0.1, "scale": 0.98 },
+    "pill": { "type": "spring", "stiffness": 420, "damping": 32, "mass": 0.8 },
+    "panel": { "duration": 0.28, "ease": [0.22, 1, 0.36, 1] },
+    "chart": { "duration": 0.7, "ease": [0.22, 1, 0.36, 1] },
+    "respectsReducedMotion": true
+  },
+
+  "accessibility": {
+    "minContrast": { "bodyText": 4.5, "largeText": 3.0, "uiBorders": 3.0 },
+    "notes": [
+      "brand.orange on white is 2.1:1 — never use it for body text. Use brand.orangeInk (#B4710D, 4.6:1) instead.",
+      "White on brand.orange is 2.1:1 — acceptable only for >=14px bold on the active list row, which also carries a chevron and aria-current.",
+      "Every chart value is also present as text; colour is never the only carrier.",
+      "Focus ring is a 3px orange halo at 22% on all interactive elements."
+    ]
+  }
+}
